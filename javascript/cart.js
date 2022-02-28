@@ -11,7 +11,7 @@ const app = createApp({
             products: [],
             productId: '',
             isLoadingItem: '', //新增讀取效果
-        }
+        };
     },
     methods: {
         getProducts() {
@@ -71,7 +71,7 @@ const app = createApp({
         this.getProducts();
         this.getCart();
     }
-})
+});
 
 //註冊一個productModal的元件, 用refs
 app.component('product-modal', {
