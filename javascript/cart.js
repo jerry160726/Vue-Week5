@@ -43,6 +43,9 @@ const app = createApp({
                     this.$refs.productModal.closeModal();
                     // 做完即關閉視窗
                     this.isLoadingItem = '';
+                })
+                .catch((err)=>{
+                    console.log(err.data);
                 });
         },
         removeCartItem(id) {
@@ -105,7 +108,10 @@ app.component('product-modal', {
         },
         addToCart() {
             console.log(this.qty);
-            this.$emit('add-cart', this.product.id, this.qty);
+            console.log(typeof(this.qty));
+            const qty = parseInt(this.qty);
+            console.log(typeof(qty));
+            this.$emit('add-cart', this.product.id, qty);
         },
     },
     mounted() {
