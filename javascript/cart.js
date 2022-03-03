@@ -106,6 +106,7 @@ const app = Vue.createApp({
             axios.post(url, { data: order }).then((response) => {
               alert(response.data.message);
               this.$refs.form.resetForm();
+              this.form.message = "";
               this.getCart();
             }).catch((err) => {
               alert(err.data.message);
