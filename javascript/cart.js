@@ -31,8 +31,8 @@ const app = Vue.createApp({
                   email: '',
                   tel: '',
                   address: '',
+                  message: '',
                 },
-                message: '',
               },
             products: [],
             productId: '',
@@ -106,7 +106,7 @@ const app = Vue.createApp({
             axios.post(url, { data: order }).then((response) => {
               alert(response.data.message);
               this.$refs.form.resetForm();
-              this.getCartData();
+              this.getCart();
             }).catch((err) => {
               alert(err.data.message);
             });
