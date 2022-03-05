@@ -16,7 +16,7 @@ defineRule('max', max);
 loadLocaleFromURL('https://unpkg.com/@vee-validate/i18n@4.1.0/dist/locale/zh_TW.json');
 
 configure({
-  generateMessage: localize('zh_TW'),
+    generateMessage: localize('zh_TW'),
 });
 
 const app = Vue.createApp({
@@ -27,13 +27,13 @@ const app = Vue.createApp({
             },
             form: {
                 user: {
-                  name: '',
-                  email: '',
-                  tel: '',
-                  address: '',
-                  message: '',
+                    name: '',
+                    email: '',
+                    tel: '',
+                    address: '',
+                    message: '',
                 },
-              },
+            },
             products: [],
             productId: '',
             isLoadingItem: '', //新增讀取效果
@@ -43,7 +43,7 @@ const app = Vue.createApp({
         VForm: Form,
         VField: Field,
         ErrorMessage,
-      },
+    },
     methods: {
         getProducts() {
             axios.get(`${apiUrl}/api/${apiPath}/products/all`)
@@ -87,6 +87,15 @@ const app = Vue.createApp({
                     this.isLoadingItem = '';
                 });
         },
+        removeCartItems() {
+            axios.delete(`${apiUrl}/api/${apiPath}/carts`)
+                .then(() => {
+                    this.getCart();
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        },
         updateCart(item) {
             const data = {
                 product_id: item.product.id,
@@ -104,14 +113,14 @@ const app = Vue.createApp({
             const url = `${apiUrl}/api/${apiPath}/order`;
             const order = this.form;
             axios.post(url, { data: order }).then((response) => {
-              alert(response.data.message);
-              this.$refs.form.resetForm();
-              this.form.message = "";
-              this.getCart();
+                alert(response.data.message);
+                this.$refs.form.resetForm();
+                this.form.message = "";
+                this.getCart();
             }).catch((err) => {
-              alert(err.data.message);
+                alert(err.data.message);
             });
-          },
+        },
     },
     mounted() {
         this.getProducts();
